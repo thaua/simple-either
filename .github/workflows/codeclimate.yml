@@ -1,0 +1,29 @@
+name: Code Climate Coverage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  PublishTestAndCoverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests & Publish Code Climate
+        uses: paambaati/codeclimate-action@v3.1.1
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run test
