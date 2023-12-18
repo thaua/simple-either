@@ -1,3 +1,8 @@
+<p align="center">
+<a href="https://codeclimate.com/github/thaua/simple-either/maintainability"><img src="https://api.codeclimate.com/v1/badges/f64aa8e8d14ad657d8d1/maintainability" /></a>
+<a href="https://codeclimate.com/github/thaua/simple-either/test_coverage"><img src="https://api.codeclimate.com/v1/badges/f64aa8e8d14ad657d8d1/test_coverage" /></a>
+</p>
+
 # Simple Either
 
 The `Either` type is a common functional programming pattern that allows you to represent a value that could be one of two possible types: `Left` or `Right`. It's particularly useful for handling error scenarios in a more expressive way.

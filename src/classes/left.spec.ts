@@ -2,7 +2,7 @@ import { left } from './left';
 
 describe('Left', () => {
   it('creates a Left instance', () => {
-    const testClass = class Test {};
+    const testClass = class TestLeft {};
     const testResult = new testClass();
     const result = left(testResult);
 

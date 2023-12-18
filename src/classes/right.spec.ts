@@ -2,7 +2,7 @@ import { right } from './right';
 
 describe('Right', () => {
   it('creates a Right instance', () => {
-    const testClass = class Test {};
+    const testClass = class TestRight {};
     const testResult = new testClass();
     const result = right(testResult);
 
