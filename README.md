@@ -20,7 +20,7 @@ npm install simple-either
 ### Example of usage 
 
 ```typescript
-import { Either, left, right } from './index';
+import { Either, left, right } from 'simple-either';
 
 interface Person {
   name: string;
