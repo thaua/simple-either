@@ -63,7 +63,7 @@ interface HttpResponse {
   response: Person | null;
 }
 
-const createUserUseCase: PersonError | Person = createUser({ name: 'validName?' } as Person);
+const createUserUseCase: Either<PersonError, Person> = createUser({ name: 'validName?' } as Person);
 
 const httpResponse = createUserUseCase.map<HttpResponse>(
   (error: PersonError) => {
@@ -82,6 +82,8 @@ const httpResponse = createUserUseCase.map<HttpResponse>(
   }
 );
 
+// Do whatever you want with your new HttpResponse based on method results :)
+
 ```
 
 ##### Matching correct branch
@@ -90,14 +92,14 @@ const httpResponse = createUserUseCase.map<HttpResponse>(
 // Previous code here...
 
 createUserUseCase.match(
-    (error: UseCreateError) => {
-      // Will enter here only on Left response
-      console.log(error);
-    },
-    (user: User) => {
-      // Will enter here only on Right response
-      console.log(user);
-    }
+  (error: PersonError) => {
+    // Will enter here only on Left response
+    console.log(error);
+  },
+  (user: Person) => {
+    // Will enter here only on Right response
+    console.log(user);
+  }
 );
 
 ```
