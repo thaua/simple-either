@@ -22,9 +22,10 @@
     "simple either",
     "either",
     "pattern",
-    "either",
+    "either pattern",
     "typescript",
-    "either"
+    "either match",
+    "either map"
   ],
   "author": "Thauã Silveira",
   "license": "MIT",
