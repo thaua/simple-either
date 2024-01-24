@@ -1,6 +1,6 @@
 {
   "name": "simple-either",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Package containing types and methods to work with Either Pattern.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
