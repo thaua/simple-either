@@ -8,7 +8,7 @@ import type { Config } from 'jest';
 const config: Config = {
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.type.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.type.ts', '!src/**/*.interface.ts'],
   coverageDirectory: './coverage',
   coveragePathIgnorePatterns: ['/node_modules/'],
   coverageProvider: 'v8',

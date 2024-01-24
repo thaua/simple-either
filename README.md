@@ -51,6 +51,57 @@ console.log(personWithoutName.isRight()); // Returns false
 console.log(personWithName.isRight());    // Returns true
 ```
 
+For even more explicit code and branching, you can use `match` and `map` methods as bellow:
+
+##### Mapping into unique return format
+
+```typescript
+// Previous code here...
+
+interface HttpResponse {
+  statusCode: number;
+  response: Person | null;
+}
+
+const createUserUseCase: PersonError | Person = createUser({ name: 'validName?' } as Person);
+
+const httpResponse = createUserUseCase.map<HttpResponse>(
+  (error: PersonError) => {
+    // Do whatever you want with PersonError and return defined type...
+    return { 
+      statusCode: 400,
+      response: null,
+    };
+  },
+  (person: Person) => {
+    // Do whatever you want with Person and return defined type...
+    return {
+      statusCode: 201,
+      response: person,
+    };
+  }
+);
+
+```
+
+##### Matching correct branch
+
+```typescript
+// Previous code here...
+
+createUserUseCase.match(
+    (error: UseCreateError) => {
+      // Will enter here only on Left response
+      console.log(error);
+    },
+    (user: User) => {
+      // Will enter here only on Right response
+      console.log(user);
+    }
+);
+
+```
+
 In this example, the `createUser` function returns an `Either` type, with `Left` representing an error case (`PersonError` interface) and `Right` representing a successful creation (`Person` interface). This allows for cleaner error handling and more explicit code.
 
 ### TypeScript Type Narrowing
@@ -81,6 +132,14 @@ if (personWithName.isRight())     printPerson(personWithName.value);      // Wor
 if (personWithName.isLeft())      handleError(personWithName.value);      // Works! (but will not be pass the condition in this example)
 if (personWithoutName.isRight())  printPerson(personWithoutName.value);   // Works! (but will not be pass the condition in this example)
 if (personWithoutName.isLeft())   handleError(personWithoutName.value);   // Works!
+
+// Simpler and beautier example:
+
+if (personWithName.isRight()) {
+  console.log(`User ${personWithName.value.name} created.`);                  // typescript knows the value is a Person
+} else {
+  console.log(`User not created due to: ${personWithName.value.cause}.`);     // typescript knows the value is a PersonError
+}
 ```
 
 ## License
